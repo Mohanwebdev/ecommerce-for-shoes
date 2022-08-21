@@ -1,4 +1,9 @@
 import pymongo
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 from datetime import datetime
 import certifi
@@ -11,10 +16,15 @@ app = Flask(__name__)
 
 app.secret_key = "abc"
 
+db_name= os.getenv('DB_NAME')
+db_pass= os.getenv('DB_PASS')
+
+
 
 ca = certifi.where()
 
-client = pymongo.MongoClient("mongodb+srv://admin_mohan:admin_mohan123@cluster0.bn8mc.mongodb.net/shoeDB?retryWrites=true&w=majority", tlsCAFile=ca)
+client = pymongo.MongoClient(
+    f"mongodb+srv://{db_name}:{db_pass}@cluster0.bn8mc.mongodb.net/shoeDB?retryWrites=true&w=majority", tlsCAFile=ca)
 
 # mongodb+srv://<username>:<password>@cluster0.bn8mc.mongodb.net/?retryWrites=true&w=majority
 
@@ -27,10 +37,6 @@ collection = db['login']
 review = db['feedback']
 
 products = db['product']
-
-
-
-
 
 
 current_month = datetime.now().strftime('%m')
@@ -98,19 +104,18 @@ def contact():
 # cart route
 
 
-
-
-@app.route("/cart",methods=["POST","GET"])
+@app.route("/cart", methods=["POST", "GET"])
 def cart():
     if request.method == "POST":
         pname = request.form['productname']
         price = request.form['price']
 
         print(userName)
-        products.insert_one({"username":userName,"productname": pname, "price": price, "year":current_year_full,"month":current_month,"day":current_day})
+        products.insert_one({"username": userName, "productname": pname, "price": price,
+                            "year": current_year_full, "month": current_month, "day": current_day})
         return render_template("cart.html")
     else:
-         return render_template("cart.html")
+        return render_template("cart.html")
 
 # product pages route
 
@@ -164,29 +169,28 @@ def admin():
 # month report
 
 
-month="all"
+month = "all"
+
 
 def update_mon(mon):
     globals().update(month=mon)
 
 
-
-
-@app.route("/monthreport",methods=["POST","GET"])
+@app.route("/monthreport", methods=["POST", "GET"])
 def monthreport():
     if request.method == "POST":
-       month_of_yr=request.form['mon']
+        month_of_yr = request.form['mon']
 
-       update_mon(month_of_yr)
+        update_mon(month_of_yr)
 
-       return redirect(url_for('monthreport'))
+        return redirect(url_for('monthreport'))
 
     else:
 
         if month == "all":
             results = products.find({})
         else:
-            results = products.find({"month":month})
+            results = products.find({"month": month})
 
         return render_template("monthrpt.html", results=results)
 
@@ -194,41 +198,44 @@ def monthreport():
 # product report
 
 
+product_details = "all"
 
-product_details="all"
 
 def update_pro(proo):
     globals().update(product_details=proo)
 
-@app.route("/productreport",methods=["POST","GET"])
+
+@app.route("/productreport", methods=["POST", "GET"])
 def productreport():
-        if request.method == "POST":
-            prod_det = request.form['prod']
+    if request.method == "POST":
+        prod_det = request.form['prod']
 
-            update_pro(prod_det)
+        update_pro(prod_det)
 
-            return redirect(url_for('productreport'))
+        return redirect(url_for('productreport'))
 
+    else:
+
+        if product_details == "all":
+            results = products.find({})
         else:
+            results = products.find({"productname": product_details})
 
-            if product_details == "all":
-                results = products.find({})
-            else:
-                results = products.find({"productname": product_details})
+        return render_template("productrpt.html", results=results)
 
-            return render_template("productrpt.html", results=results)
+    # feedback display module
+
+    # {"uname": username, "pname": productname, "msg": message}
 
 
-        # feedback display module
+feed_details = "all"
 
-        # {"uname": username, "pname": productname, "msg": message}
-
-feed_details="all"
 
 def update_feed(proo):
     globals().update(feed_details=proo)
 
-@app.route("/feed",methods=["POST","GET"])
+
+@app.route("/feed", methods=["POST", "GET"])
 def feed():
     if request.method == "POST":
         feed_det = request.form['prod']
@@ -248,7 +255,9 @@ def feed():
 
 # to get the username for storing it in database
 
-userName="hey"
+
+userName = "hey"
+
 
 def update_foo(namee):
     globals().update(userName=namee)
@@ -256,14 +265,13 @@ def update_foo(namee):
 # login route
 
 
-
-@app.route("/account",methods=["POST","GET"])
+@app.route("/account", methods=["POST", "GET"])
 def account():
     if request.method == "POST":
         uname = request.form['user']
         pwd = request.form['pass']
-        data = collection.find_one({"username":uname})
-        if(pwd==data['password']):
+        data = collection.find_one({"username": uname})
+        if(pwd == data['password']):
             update_foo(uname)
             if(uname == "admin"):
                 return redirect(url_for('admin'))
@@ -279,13 +287,13 @@ def account():
 # signin
 
 
-@app.route("/signup", methods=["POST","GET"])
+@app.route("/signup", methods=["POST", "GET"])
 def signup():
     if request.method == "POST":
         uname = request.form['user']
         if request.form['pass'] == request.form['confirmpass']:
             pwd = request.form['pass']
-            collection.insert_one({"username":uname,"password":pwd})
+            collection.insert_one({"username": uname, "password": pwd})
             msg = "Account created successfully"
             return render_template('signup.html', msg=msg)
         else:
@@ -298,13 +306,13 @@ def signup():
 # forgot password
 
 
-@app.route("/forgotpass", methods=["POST","GET"])
+@app.route("/forgotpass", methods=["POST", "GET"])
 def forgotpass():
     if request.method == "POST":
         uname = request.form['user']
         pwd = request.form['pass']
-        collection.update_one({"username":uname},{"$set":{
-            "password":pwd
+        collection.update_one({"username": uname}, {"$set": {
+            "password": pwd
         }})
         msg = "Password changed successfully"
         return render_template('forgotpass.html', msg=msg)
@@ -313,18 +321,17 @@ def forgotpass():
 
     # feedback route
 
-@app.route("/feedback", methods=["POST","GET"])
+
+@app.route("/feedback", methods=["POST", "GET"])
 def feedback():
     if request.method == "POST":
-        username= request.form['uname']
-        productname= request.form['pname']
-        message= request.form['msg']
-        review.insert_one({"uname":username,"pname":productname,"msg":message})
+        username = request.form['uname']
+        productname = request.form['pname']
+        message = request.form['msg']
+        review.insert_one(
+            {"uname": username, "pname": productname, "msg": message})
         flash("Feedback sent successfully")
         return redirect(url_for('sproduct'))
-
-
-
 
 
 if __name__ == "__main__":
