@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SE | About</title>
+    <!-- Import the component -->
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='css/style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='css/normalize.css') }}"
+    />
+    <link rel="icon" href="img/logo.jpg" />
+  </head>
+
+  <body>
+    <section id="header">
+      <h1 class="logo-title">Fashion Feet</h1>
+
+      <div>
+        <ul id="navbar">
+          <li><a href="/">Home</a></li>
+          <li><a href="/shop">Shop</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a class="active" href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li id="lg-icons">
+            <a href="/cart"><i class="far fa-shopping-bag"></i></a>
+          </li>
+          <li id="lg-icons">
+            <a href="/account"><i class="fas fa-user-circle"></i></a>
+          </li>
+          <a href="#" id="close"><i class="far fa-times"></i></a>
+        </ul>
+      </div>
+      <div id="mobile">
+        <a href="/cart"><i class="far fa-shopping-bag"></i></a>
+        <a href="/account"><i class="fas fa-user-circle"></i></a>
+        <i id="bar" class="fas fa-outdent"></i>
+      </div>
+    </section>
+
+    <section id="feature" class="section-p1">
+      <div class="fe-box">
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <lottie-player
+          src="https://assets3.lottiefiles.com/packages/lf20_qOrHGJ.json"
+          background="transparent"
+          speed="1"
+          style="width: 150px; height: 110px"
+          loop
+          autoplay
+        ></lottie-player>
+        <h6>Free Shipping</h6>
+      </div>
+      <div class="fe-box">
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <lottie-player
+          src="https://assets1.lottiefiles.com/packages/lf20_k10ku8at.json"
+          background="transparent"
+          speed="1"
+          style="width: 150px; height: 110px"
+          loop
+          autoplay
+        ></lottie-player>
+        <h6>Online Order</h6>
+      </div>
+      <div class="fe-box">
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <lottie-player
+          src="https://assets10.lottiefiles.com/packages/lf20_r3loxc6w.json"
+          background="transparent"
+          speed="1"
+          style="width: 150px; height: 110px"
+          loop
+          autoplay
+        ></lottie-player>
+        <h6>Save Money</h6>
+      </div>
+      <div class="fe-box">
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <lottie-player
+          src="https://assets2.lottiefiles.com/private_files/lf30_hmuqewxz.json"
+          background="transparent"
+          speed="1"
+          style="width: 150px; height: 110px"
+          loop
+          autoplay
+        ></lottie-player>
+        <h6>Promotions</h6>
+      </div>
+      <div class="fe-box">
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <lottie-player
+          src="https://assets6.lottiefiles.com/packages/lf20_jjokptgh.json"
+          background="transparent"
+          speed="1"
+          style="width: 150px; height: 100px"
+          loop
+          autoplay
+        ></lottie-player>
+        <h6>Secured Transaction</h6>
+      </div>
+      <div class="fe-box">
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <lottie-player
+          src="https://assets5.lottiefiles.com/packages/lf20_fytm1esb.json"
+          background="transparent"
+          speed="1"
+          style="width: 150px; height: 110px"
+          loop
+          autoplay
+        ></lottie-player>
+        <h6>F24/7 Support</h6>
+      </div>
+    </section>
+
+    <footer id="footer" class="section-p1">
+      <div class="col">
+        <h4>About</h4>
+        <a href="/about">About Us</a>
+
+        <a href="/contact">Contact Us</a>
+      </div>
+
+      <div class="col">
+        <h4>My Account</h4>
+        <a href="/account">Sign In</a>
+        <a href="/cart">View Cart</a>
+      </div>
+
+      <div class="col install">
+        <p>Secured Payment Gateways</p>
+        <img
+          src="{{ url_for('static',filename='./img/pay/pay.png') }}"
+          alt=""
+        />
+      </div>
+    </footer>
+
+    <script src="{{ url_for('static',filename='./js/script.js') }}"></script>
+  </body>
+</html>

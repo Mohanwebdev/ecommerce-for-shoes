@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SE | Home</title>
+    <!-- Import the component -->
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='css/style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='css/normalize.css') }}"
+    />
+
+    <link rel="icon" href="img/logo.jpg" />
+
+      <style type="text/css">
+
+
+    tr{
+        border: 1px solid black;
+        background-color:white;
+
+    }
+
+    td{
+        padding: 8px 8px;
+        border: 1px solid black;
+    }
+
+</style>
+  </head>
+
+  <body>
+    <section id="header">
+       <h1 class="logo-title">Admin</h1>
+      <div>
+        <ul id="navbar">
+           <li><a  href="/admin">Home</a></li>
+          <li><a class="active" href="/monthreport">Month wise report</a></li>
+          <li><a href="/productreport">Product wise report</a></li>
+            <li><a  href="/feed">Feedback</a></li>
+
+
+        </ul>
+
+      </div>
+
+        </section>
+
+
+<section id="form-details" class="admin-body">
+       <div class="single-pro-details">
+
+         <h4>Select the month to view the month wise report</h4>
+
+
+      <br>
+
+         <section >
+      <form action="/monthreport" method="post">
+        <select name="mon">
+          <option>Select month</option>
+          <option value="01">January</option>
+          <option value="02">February</option>
+          <option value="03">March</option>
+          <option value="04">April</option>
+          <option value="05">May</option>
+          <option value="06">June</option>
+          <option value="07">July</option>
+          <option value="08">August</option>
+          <option value="09">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+
+        </select>
+        <br>
+
+<!--"username":userName,"productname": pname, "price": price, "year":current_year_full,"month":current_month,"day":current_day})-->
+
+          <button class="normal">Submit</button>
+      </form>
+    </section>
+
+
+
+
+<br>
+           <br>
+    <table style="margin-left: 5px;">
+<!-- Table headers -->
+    <th>
+        <tr style="color: white; background-color: black ">
+         <td>S.No</td>
+        <td>username</td>
+        <td>productname</td>
+            <td>price</td>
+            <td>year</td>
+            <td>month</td>
+            <td>day</td>
+
+</tr>
+    </th>
+
+
+{%for i in results%}
+
+
+<!-- table rows -->
+<tr>
+
+       <td>{{ loop.index }}</td>
+
+
+    <td>{{i.username}}</td>
+    <td>{{i.productname}}</td>
+    <td>{{i.price}}</td>
+    <td>{{i.year}}</td>
+    <td>{{i.month}}</td>
+    <td>{{i.day}}</td>
+
+{%endfor%}
+
+</tr>
+
+</table>
+      <br>
+      <br>
+      <br>
+    <br>
+      <br>
+      <br>
+    <br>
+      <br>
+      <br>
+
+
+      <div id="mobile">
+        <a href="/cart"><i class="far fa-shopping-bag"></i></a>
+        <a href="/account"><i class="fas fa-user-circle"></i></a>
+        <i id="bar" class="fas fa-outdent"></i>
+      </div>
+
+</section>
+
+    <footer id="footer" class="section-p1">
+      <div class="col">
+        <h4>About</h4>
+        <a href="/about">About Us</a>
+
+        <a href="/contact">Contact Us</a>
+      </div>
+
+      <div class="col">
+        <h4>My Account</h4>
+        <a href="/account">Sign In</a>
+        <a href="/cart">View Cart</a>
+      </div>
+
+      <div class="col install">
+        <p>Secured Payment Gateways</p>
+        <img
+          src="{{ url_for('static',filename='./img/pay/pay.png') }}"
+          alt=""
+        />
+      </div>
+    </footer>
+
+    <script src="{{ url_for('static',filename='./js/script.js') }}"></script>
+  </body>
+</html>

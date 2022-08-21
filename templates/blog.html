@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SE | Blog</title>
+    <!-- Import the component -->
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='css/style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='css/normalize.css') }}"
+    />
+    <link rel="icon" href="img/logo.jpg" />
+  </head>
+
+  <body>
+    <section id="header">
+       <h1 class="logo-title">Fashion Feet</h1>
+      <div>
+        <ul id="navbar">
+          <li><a href="/">Home</a></li>
+          <li><a href="/shop">Shop</a></li>
+          <li><a class="active" href="/blog">Blog</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li id="lg-icons">
+            <a href="/cart"><i class="far fa-shopping-bag"></i></a>
+          </li>
+          <li id="lg-icons">
+            <a href="/account"><i class="fas fa-user-circle"></i></a>
+          </li>
+          <a href="#" id="close"><i class="far fa-times"></i></a>
+        </ul>
+      </div>
+      <div id="mobile">
+        <a href="/cart"><i class="far fa-shopping-bag"></i></a>
+        <a href="/account"><i class="fas fa-user-circle"></i></a>
+        <i id="bar" class="fas fa-outdent"></i>
+      </div>
+    </section>
+
+    <section id="page-header" class="blog-header">
+      <h2>#ReadMore</h2>
+      <p>Find out more about the products we provide!</p>
+    </section>
+
+    <section id="blog">
+      <div class="blog-box">
+        <div class="blog-img">
+          <img
+            src="{{ url_for('static',filename='img/products/f1.jpeg') }}"
+            alt=""
+          />
+        </div>
+        <div class="blog-details">
+          <h4>Nike Dunk Low 'Black White' 2021</h4>
+          <p>
+            The Nike Dunk Low ‘Black White’ treats the retro model to an
+            essential two-tone color scheme that accentuates the sneaker’s clean
+            lines, developed by designer Peter Moore and responsible for the
+            shoe’s easy transition from the hardwood to the street.
+          </p>
+          <a
+            href="https://sneakernews.com/2020/12/01/nike-dunk-low-retro-black-white-2021-release-date/"
+            rel="noopener noreferrer"
+            target="_blank"
+            >CONTINUE READING</a
+          >
+        </div>
+        <h1>03/10/21</h1>
+      </div>
+
+      <div class="blog-box">
+        <div class="blog-img">
+          <img
+            src="{{ url_for('static',filename='img/products/f2.jpeg') }}"
+            alt=""
+          />
+        </div>
+        <div class="blog-details">
+          <h4>Jordan 1 Low 'Bred Toe'</h4>
+          <p>
+            The Jordan 1 Low Bred Toe takes cues from the 2018 Air Jordan 1 High
+            Bred Toe with its signature black and red color blocking. From
+            there, an embroidered Wing logo on the heel and a Jumpman tongue
+            label complete the design. The Jordan 1 Low Bred Toe released in
+            December of 2021 and retailed for $100.
+          </p>
+          <a
+            href="https://sneakernews.com/2021/07/22/air-jordan-1-low-bred-toe-553558-612-release-date/"
+            rel="noopener noreferrer"
+            target="_blank"
+            >CONTINUE READING</a
+          >
+        </div>
+        <h1>08/12/21</h1>
+      </div>
+
+      <div class="blog-box">
+        <div class="blog-img">
+          <img
+            src="{{ url_for('static',filename='img/products/f3.jpeg') }}"
+            alt=""
+          />
+        </div>
+        <div class="blog-details">
+          <h4>Jordan 4 Retro 'Red Thunder'</h4>
+          <p>
+            Following similar color blocking as the Air Jordan 4 Thunder, the
+            Air Jordan 4 Red Thunder features an all-black Durabuck upper with
+            red netted underlays and eyelets. On the tongue, a signature Air
+            Jordan Flight patch is stitched. A vibrant red midsole and Jumpman
+            heel tab complete the retro design. The Air Jordan 4 Red Thunder
+            releases in January of 2022 and retails for $190.
+          </p>
+          <a
+            href="https://www.highsnobiety.com/p/nike-air-jordan-4-red-thunder-release-date-info-price/"
+            rel="noopener noreferrer"
+            target="_blank"
+            >CONTINUE READING</a
+          >
+        </div>
+        <h1>15/01/22</h1>
+      </div>
+
+      <div class="blog-box">
+        <div class="blog-img">
+          <img
+            src="{{ url_for('static',filename='img/products/f4.jpeg') }}"
+            alt=""
+          />
+        </div>
+        <div class="blog-details">
+          <h4>Jordan 1 Mid 'Linen'</h4>
+          <p>
+            The Jordan 1 Mid Linen features a white leather upper with College
+            Grey overlays and Swooshes. At the collar, hits of linen add a
+            slight contrast. From there, matching woven tongue labels and soles
+            complete the design. The Jordan 1 Mid Linen released in November of
+            2021 and retailed for $120.
+          </p>
+          <a
+            href="https://sneakernews.com/2021/07/20/air-jordan-1-mid-linen-white-554724-082/"
+            rel="noopener noreferrer"
+            target="_blank"
+            >CONTINUE READING</a
+          >
+        </div>
+        <h1>11/01/22</h1>
+      </div>
+    </section>
+
+    <script src="{{ url_for('static',filename='./js/script.js') }}"></script>
+  </body>
+</html>
